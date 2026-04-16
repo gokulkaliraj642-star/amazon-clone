@@ -24,9 +24,9 @@ class AmazonMiniApp extends StatelessWidget {
   }
 }
 
+//this is the auth gate developed by gokul
 class AuthGate extends StatefulWidget {
   const AuthGate({super.key});
-
   @override
   State<AuthGate> createState() => _AuthGateState();
 }
