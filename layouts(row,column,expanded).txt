@@ -1,0 +1,26 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MaterialApp(home: LayoutDemo()));
+
+class LayoutDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Layouts")),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(width: 50, height: 50, color: Colors.red),
+              Container(width: 50, height: 50, color: Colors.green),
+            ],
+          ),
+          Expanded(
+            child: Center(child: Text("Expanded Widget")),
+          ),
+        ],
+      ),
+    );
+  }
+}

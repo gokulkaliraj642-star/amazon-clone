@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
+void main() => runApp(MaterialApp(home: CameraApp()));
+
+class CameraApp extends StatefulWidget {
+  @override
+  _CameraAppState createState() => _CameraAppState();
+}
+
+class _CameraAppState extends State<CameraApp> {
+  File? image;
+  final picker = ImagePicker();
+
+  Future capture() async {
+    final picked = await picker.pickImage(source: ImageSource.camera);
+    if (picked != null) {
+      setState(() => image = File(picked.path));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Camera")),
+      body: Column(
+        children: [
+          image != null ? Image.file(image!) : Text("No Image"),
+          ElevatedButton(onPressed: capture, child: Text("Capture Image")),
+        ],
+      ),
+    );
+  }
+}

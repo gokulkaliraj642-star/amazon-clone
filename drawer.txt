@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(home: DrawerDemo());
+  }
+}
+
+class DrawerDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Drawer Demo")),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(child: Text("Menu")),
+            ListTile(title: Text("Home")),
+            ListTile(title: Text("Settings")),
+          ],
+        ),
+      ),
+      body: Center(child: Text("Open Drawer")),
+    );
+  }
+}

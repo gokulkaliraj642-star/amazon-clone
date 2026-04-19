@@ -1,0 +1,27 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MaterialApp(home: RGBApp()));
+
+class RGBApp extends StatefulWidget {
+  @override
+  _RGBAppState createState() => _RGBAppState();
+}
+
+class _RGBAppState extends State<RGBApp> {
+  double r = 0, g = 0, b = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(r.toInt(), g.toInt(), b.toInt(), 1),
+      appBar: AppBar(title: Text("RGB Slider")),
+      body: Column(
+        children: [
+          Slider(value: r, max: 255, onChanged: (v) => setState(() => r = v)),
+          Slider(value: g, max: 255, onChanged: (v) => setState(() => g = v)),
+          Slider(value: b, max: 255, onChanged: (v) => setState(() => b = v)),
+        ],
+      ),
+    );
+  }
+}

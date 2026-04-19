@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MaterialApp(home: QuizApp()));
+
+class QuizApp extends StatefulWidget {
+  @override
+  _QuizAppState createState() => _QuizAppState();
+}
+
+class _QuizAppState extends State<QuizApp> {
+  int index = 0;
+  int score = 0;
+
+  List questions = [
+    {"q": "2 + 2 = ?", "a": ["3", "4", "5"], "ans": "4"},
+  ];
+
+  void answer(String a) {
+    if (a == questions[index]["ans"]) score++;
+    setState(() => index++);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (index >= questions.length) {
+      return Scaffold(body: Center(child: Text("Score: $score")));
+    }
+
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(questions[index]["q"]),
+          ...(questions[index]["a"] as List)
+              .map((e) => ElevatedButton(
+                    onPressed: () => answer(e),
+                    child: Text(e),
+                  ))
+        ],
+      ),
+    );
+  }
+}

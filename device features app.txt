@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:battery_plus/battery_plus.dart';
+
+void main() => runApp(MaterialApp(home: DeviceApp()));
+
+class DeviceApp extends StatefulWidget {
+  @override
+  _DeviceAppState createState() => _DeviceAppState();
+}
+
+class _DeviceAppState extends State<DeviceApp> {
+  int batteryLevel = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    getBattery();
+  }
+
+  void getBattery() async {
+    final battery = Battery();
+    batteryLevel = await battery.batteryLevel;
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Device Info")),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Battery: $batteryLevel%"),
+          GridView.count(
+            crossAxisCount: 2,
+            shrinkWrap: true,
+            children: List.generate(4, (i) {
+              return Card(
+                child: Image.network("https://picsum.photos/200?image=$i"),
+              );
+            }),
+          )
+        ],
+      ),
+    );
+  }
+}
